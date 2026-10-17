@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Relatório interativo das vendas da papelaria, com filtros e cinco visões de valor vendido.">
+    <meta name="description" content="Relatório interativo das vendas da papelaria entre janeiro e março de 2026.">
     <meta name="theme-color" content="#FFF9F0">
-    <title>Vendas da papelaria | Papelê Studio</title>
+    <title>Relatório de vendas | Papelê Studio</title>
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
   </head>
@@ -14,15 +14,10 @@
     <header class="page-header">
       <div class="header-inner">
         <p class="eyebrow brand-label">Papelê Studio <span aria-hidden="true">·</span> Relatório de vendas</p>
-        <h1>Vendas da papelaria</h1>
+        <h1>Vendas em perspectiva</h1>
         <div class="header-meta">
-          <p class="intro">Explore o valor vendido e as vendas registradas por período e dimensão.</p>
-          <div class="period-control">
-            <label for="period-filter">Período</label>
-            <select id="period-filter">
-              <option value="all">Todos os meses</option>
-            </select>
-          </div>
+          <p class="intro">Valor vendido e vendas registradas na papelaria.</p>
+          <p class="period-note"><span>Período analisado</span><span class="period-range"><time datetime="2026-01-01">1º jan</time> — <time datetime="2026-03-31">31 mar 2026</time></span></p>
         </div>
       </div>
     </header>
@@ -36,48 +31,17 @@
           </div>
           <button id="clear-filters" class="button button-secondary" type="button">Limpar filtros</button>
         </div>
-        <div class="filter-controls">
-          <div class="search-control">
-            <label for="product-search">Buscar produto</label>
-            <input id="product-search" type="search" autocomplete="off" placeholder="Digite parte do nome">
-          </div>
-        </div>
         <div class="filter-groups">
           <fieldset>
             <legend>Cidade</legend>
-            <div class="group-actions">
-              <button class="button button-tertiary" type="button" data-select-group="city-filters" aria-label="Selecionar todas as cidades">Todas</button>
-              <button class="button button-tertiary" type="button" data-clear-group="city-filters" aria-label="Desmarcar todas as cidades">Nenhuma</button>
-            </div>
             <div id="city-filters" class="checkbox-list"></div>
           </fieldset>
           <fieldset>
             <legend>Categoria</legend>
-            <div class="group-actions">
-              <button class="button button-tertiary" type="button" data-select-group="category-filters" aria-label="Selecionar todas as categorias">Todas</button>
-              <button class="button button-tertiary" type="button" data-clear-group="category-filters" aria-label="Desmarcar todas as categorias">Nenhuma</button>
-            </div>
             <div id="category-filters" class="checkbox-list"></div>
           </fieldset>
-          <fieldset>
-            <legend>Produto</legend>
-            <div class="group-actions">
-              <button class="button button-tertiary" type="button" data-select-group="product-filters" aria-label="Selecionar todos os produtos">Todos</button>
-              <button class="button button-tertiary" type="button" data-clear-group="product-filters" aria-label="Desmarcar todos os produtos">Nenhum</button>
-            </div>
-            <div id="product-filters" class="checkbox-list"></div>
-          </fieldset>
-          <fieldset>
-            <legend>Forma de pagamento</legend>
-            <div class="group-actions">
-              <button class="button button-tertiary" type="button" data-select-group="payment-filters" aria-label="Selecionar todas as formas de pagamento">Todas</button>
-              <button class="button button-tertiary" type="button" data-clear-group="payment-filters" aria-label="Desmarcar todas as formas de pagamento">Nenhuma</button>
-            </div>
-            <div id="payment-filters" class="checkbox-list"></div>
-          </fieldset>
         </div>
-        <p id="filter-summary" class="filter-summary" aria-live="polite" aria-atomic="true"></p>
-        <p class="filter-hint">Os filtros se combinam. Se nenhuma opção ficar marcada em um grupo, nenhuma venda será exibida.</p>
+        <p class="filter-hint">Desmarque opções para filtrar. Se nenhuma opção ficar marcada em um grupo, nenhuma venda será exibida.</p>
       </section>
 
       <section aria-labelledby="summary-title">
@@ -86,7 +50,7 @@
             <p class="eyebrow">VISÃO GERAL</p>
             <h2 id="summary-title">Indicadores de vendas</h2>
           </div>
-          <p id="result-count" class="result-count" aria-live="polite" aria-atomic="true"></p>
+          <p id="result-count" class="result-count" aria-live="polite"></p>
         </div>
         <div class="kpi-grid">
           <article class="kpi-card">
@@ -117,28 +81,13 @@
         <div class="chart-grid">
           <article class="panel chart-card">
             <h3>Valor vendido por mês</h3>
-            <p class="chart-description">Linha temporal da soma em R$; tooltips incluem vendas e unidades.</p>
+            <p class="chart-description">Soma do valor das vendas em cada mês.</p>
             <div id="monthly-chart" class="chart" aria-live="polite"></div>
           </article>
           <article class="panel chart-card">
             <h3>Valor vendido por categoria</h3>
-            <p class="chart-description">Barras em R$, ordenadas pelo total; detalhes incluem vendas e unidades.</p>
+            <p class="chart-description">Categorias ordenadas pelo total vendido.</p>
             <div id="category-chart" class="chart" aria-live="polite"></div>
-          </article>
-          <article class="panel chart-card">
-            <h3>Valor vendido por cidade</h3>
-            <p class="chart-description">Barras em R$, ordenadas pelo total; detalhes incluem vendas e unidades.</p>
-            <div id="city-chart" class="chart" aria-live="polite"></div>
-          </article>
-          <article class="panel chart-card">
-            <h3>Valor vendido por produto</h3>
-            <p class="chart-description">Barras em R$, ordenadas pelo total; detalhes incluem vendas e unidades.</p>
-            <div id="product-chart" class="chart" aria-live="polite"></div>
-          </article>
-          <article class="panel chart-card">
-            <h3>Valor vendido por forma de pagamento</h3>
-            <p class="chart-description">Barras em R$, ordenadas pelo total; detalhes incluem vendas e unidades.</p>
-            <div id="payment-chart" class="chart" aria-live="polite"></div>
           </article>
         </div>
       </section>
@@ -153,9 +102,9 @@
         <p id="empty-state" class="empty-state" role="status" hidden>Nenhuma venda corresponde aos filtros selecionados. Marque outras opções ou limpe os filtros.</p>
         <div class="table-wrap">
           <table>
-            <caption class="visually-hidden">Vendas filtradas, com data, cidade, categoria, produto, forma de pagamento, quantidade e valor vendido</caption>
+            <caption class="visually-hidden">Vendas filtradas, com data, cidade, categoria, produto, quantidade e valor vendido</caption>
             <thead>
-              <tr><th scope="col">Data</th><th scope="col">Cidade</th><th scope="col">Categoria</th><th scope="col">Produto</th><th scope="col">Forma de pagamento</th><th scope="col" class="numeric">Quantidade</th><th scope="col" class="numeric">Valor vendido</th></tr>
+              <tr><th scope="col">Data</th><th scope="col">Cidade</th><th scope="col">Categoria</th><th scope="col">Produto</th><th scope="col" class="numeric">Quantidade</th><th scope="col" class="numeric">Valor vendido</th></tr>
             </thead>
             <tbody id="sales-rows"></tbody>
           </table>

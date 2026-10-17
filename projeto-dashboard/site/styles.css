@@ -30,9 +30,9 @@ button, input { font: inherit; }
 .header-inner h1 { margin: 0.2rem 0 0.45rem; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4.6vw, 3rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; }
 .header-meta { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .intro { max-width: 680px; margin: 0; color: var(--muted); font-size: 1rem; }
-.period-note { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 0.55rem; margin: 0; padding: 0.38rem 0.7rem; border: 1px solid #d2c69e; border-radius: 999px; background: #fff4ce; font-size: 0.84rem; }
-.period-note span { color: var(--muted); }
-.period-note time { color: var(--graphite); font-weight: 750; white-space: nowrap; }
+.period-control, .search-control { display: grid; gap: 0.3rem; min-width: min(100%, 13rem); }
+.period-control label, .search-control label { color: var(--graphite); font-size: 0.85rem; font-weight: 750; }
+.period-control select, .search-control input { width: 100%; min-height: 44px; padding: 0.5rem 0.7rem; border: 1px solid #8f8994; border-radius: 0.45rem; background: var(--paper); color: var(--graphite); }
 .eyebrow { margin: 0 0 0.22rem; color: var(--green); font-size: 0.73rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
 
 .layout { display: grid; gap: 1.15rem; padding: 1.15rem 0 3rem; }
@@ -45,13 +45,19 @@ h3 { margin: 0; font-size: 1rem; }
 .button { min-height: 44px; padding: 0.55rem 0.9rem; border: 2px solid transparent; border-radius: 0.45rem; cursor: pointer; font-weight: 700; }
 .button-secondary { border-color: var(--green); background: var(--paper); color: var(--green); }
 .button-secondary:hover { background: #e6f7ef; }
-.filter-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
-legend { margin-bottom: 0.35rem; font-weight: 750; }
+.filter-controls { margin: 0 0 0.8rem; }
+.search-control { max-width: 28rem; }
+.filter-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+fieldset { min-width: 0; margin: 0; padding: 0.55rem 0.75rem 0.65rem; border: 1px solid var(--line); border-radius: 0.6rem; background: #fffaf2; }
+legend { width: 100%; margin-bottom: 0.15rem; font-weight: 750; }
+.group-actions { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 0.25rem; }
+.button-tertiary { min-height: 40px; padding: 0.35rem 0.6rem; border-color: var(--line); background: var(--paper); color: var(--graphite); font-size: 0.82rem; }
+.button-tertiary:hover { border-color: var(--green); background: #e9f8f0; }
 .checkbox-list { display: flex; flex-wrap: wrap; gap: 0.35rem 0.85rem; }
 .check-option { display: inline-flex; align-items: center; gap: 0.48rem; min-height: 42px; padding: 0.25rem 0.45rem 0.25rem 0; cursor: pointer; }
 .check-option input { width: 1.15rem; height: 1.15rem; accent-color: var(--green); }
 .filter-hint, .chart-description, .kpi-note { margin: 0.25rem 0 0; color: var(--muted); font-size: 0.84rem; }
+.filter-summary { margin: 0.75rem 0 0; padding: 0.55rem 0.7rem; border-left: 3px solid #bc9a38; background: #fff3cc; color: var(--graphite); font-size: 0.88rem; overflow-wrap: anywhere; }
 .result-count { margin: 0; color: var(--muted); font-size: 0.9rem; font-weight: 650; }
 
 .kpi-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.85rem; }
@@ -62,6 +68,7 @@ legend { margin-bottom: 0.35rem; font-weight: 750; }
 .kpi-value { margin: 0.35rem 0 0; color: var(--graphite); font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.55rem, 3vw, 2.1rem); font-weight: 700; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 
 .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+.chart-card { min-width: 0; }
 .chart-card h3 { font-size: 1.03rem; }
 .chart { position: relative; min-height: 230px; margin-top: 0.7rem; }
 .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -75,7 +82,10 @@ legend { margin-bottom: 0.35rem; font-weight: 750; }
 .chart .chart-mark { cursor: pointer; transform-box: fill-box; transform-origin: center; transition: transform 150ms ease, stroke-width 150ms ease, filter 150ms ease; }
 .chart circle.chart-mark:focus-visible { stroke-width: 5px; filter: drop-shadow(0 0 2px var(--graphite)); }
 .chart rect.chart-mark:focus-visible { stroke-width: 3px; filter: drop-shadow(0 0 2px var(--graphite)); }
-.chart-tooltip { position: absolute; z-index: 2; max-width: min(18rem, calc(100% - 1rem)); padding: 0.45rem 0.65rem; border: 1px solid var(--green); border-radius: 0.45rem; background: var(--cream); box-shadow: 0 3px 10px rgb(41 38 51 / 16%); color: var(--graphite); font-size: 0.875rem; font-weight: 700; line-height: 1.35; overflow-wrap: anywhere; pointer-events: none; }
+.chart-tooltip { position: absolute; z-index: 2; display: grid; gap: 0.1rem; max-width: min(18rem, calc(100% - 1rem)); padding: 0.45rem 0.65rem; border: 1px solid var(--green); border-radius: 0.45rem; background: var(--cream); box-shadow: 0 3px 10px rgb(41 38 51 / 16%); color: var(--graphite); font-size: 0.875rem; line-height: 1.35; overflow-wrap: anywhere; pointer-events: none; }
+.chart-tooltip-title { font-weight: 750; }
+.chart-tooltip-value { font-size: 0.95rem; }
+.chart-tooltip-details { color: var(--muted); font-size: 0.8rem; }
 .chart-tooltip[hidden] { display: none; }
 @media (hover: hover) and (pointer: fine) {
   .chart circle.chart-mark:hover { transform: scale(1.25); stroke-width: 5px; filter: drop-shadow(0 0 2px var(--graphite)); }
@@ -104,7 +114,7 @@ code { font-family: Consolas, "Courier New", monospace; }
   .header-inner, .layout { width: min(100% - 1.25rem, 1120px); }
   .layout { gap: 0.9rem; padding-top: 0.85rem; }
   .header-meta { align-items: flex-start; flex-direction: column; gap: 0.65rem; }
-  .period-note { font-size: 0.8rem; }
+  .period-control { width: 100%; }
   .filter-groups, .chart-grid { grid-template-columns: 1fr; }
   .kpi-grid { grid-template-columns: 1fr; gap: 0.55rem; }
   .kpi-card { padding: 0.65rem 0.85rem; }
@@ -112,12 +122,13 @@ code { font-family: Consolas, "Courier New", monospace; }
   .panel { padding: 0.9rem; }
   .section-heading { align-items: flex-start; }
   .table-wrap { max-height: 65vh; }
-  table { min-width: 650px; }
+  table { min-width: 780px; }
   .filter-heading { flex-wrap: wrap; }
 }
 
 @media (max-width: 380px) {
-  .period-note { align-items: flex-start; flex-direction: column; gap: 0.05rem; border-radius: 0.65rem; }
+  .group-actions { gap: 0.25rem; }
+  .button-tertiary { min-height: 40px; padding-inline: 0.45rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

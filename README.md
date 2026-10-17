@@ -2,6 +2,9 @@
 
 Repositório público com os relatórios de análise da papelaria, o fluxo da equipe, as skills usadas no processo e o dashboard estático preparado para Render.
 
+## Link de acesso
+Link: https://analise-multiagentes.onrender.com/
+
 ## Conteúdo publicado
 
 - `AGENTS.md`: fluxo de trabalho, responsabilidades, critérios e relatórios por rodada.
@@ -20,3 +23,4 @@ O repositório publica apenas a documentação Markdown, a configuração do Ren
 ## Fluxo documentado
 
 Consulte `AGENTS.md` para as instruções completas. O processo usa as três funções Construtor, Tester e Revisor, preserva relatórios por rodada e só declara aprovação quando todos validam a mesma versão. Para configurar a hospedagem, siga `DEPLOY_RENDER.md`.
+

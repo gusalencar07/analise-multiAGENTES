@@ -2,6 +2,8 @@
 /*
 !/.gitignore
 !/README.md
+!/DEPLOY_RENDER.md
+!/render.yaml
 !/AGENTS.md
 !/resumo.md
 !/verificacao.md
@@ -41,3 +43,16 @@ projeto-dashboard/relatorios/rodada-04/*
 !/projeto-dashboard/relatorios/rodada-04/construtor.md
 !/projeto-dashboard/relatorios/rodada-04/tester.md
 !/projeto-dashboard/relatorios/rodada-04/revisor.md
+!/projeto-dashboard/relatorios/rodada-05/
+projeto-dashboard/relatorios/rodada-05/*
+!/projeto-dashboard/relatorios/rodada-05/construtor.md
+!/projeto-dashboard/relatorios/rodada-05/tester.md
+!/projeto-dashboard/relatorios/rodada-05/revisor.md
+!/projeto-dashboard/site/
+projeto-dashboard/site/*
+!/projeto-dashboard/site/index.html
+!/projeto-dashboard/site/styles.css
+!/projeto-dashboard/site/app.js
+!/projeto-dashboard/site/data/
+projeto-dashboard/site/data/*
+!/projeto-dashboard/site/data/vendas.json

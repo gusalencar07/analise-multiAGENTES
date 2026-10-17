@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: papelaria-relatorio-vendas
+    runtime: static
+    buildCommand: echo "Static site ready"
+    staticPublishPath: ./projeto-dashboard/site

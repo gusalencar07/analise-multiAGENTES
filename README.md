@@ -1,15 +1,17 @@
-# Relatórios e fluxos de trabalho de análise de dados
+# Relatórios, fluxos de trabalho e dashboard de vendas
 
-Repositório documental para compartilhar os relatórios de análise da papelaria, o fluxo da equipe e as skills usadas no processo.
+Repositório público com os relatórios de análise da papelaria, o fluxo da equipe, as skills usadas no processo e o dashboard estático preparado para Render.
 
 ## Conteúdo publicado
 
 - `AGENTS.md`: fluxo de trabalho, responsabilidades, critérios e relatórios por rodada.
 - `.opencode/skills/`: definições Markdown de `explore-data`, `data-visualization` e `validate-data`.
 - `resumo.md` e `verificacao.md`: perfil e verificação independente dos dados.
-- `projeto-dashboard/relatorios/`: relatório final e histórico das rodadas 01 a 04.
+- `projeto-dashboard/relatorios/`: relatório final e histórico das rodadas.
+- `projeto-dashboard/site/`: arquivos estáticos do relatório interativo de vendas e seus dados preparados.
+- `render.yaml` e `DEPLOY_RENDER.md`: configuração do Render Static Site e instruções para vinculá-lo à conta.
 
-O repositório foi preparado intencionalmente para publicar **apenas esses documentos Markdown e o `.gitignore`**. CSVs, imagens, código-fonte do dashboard, ambiente `.venv`, caches e demais arquivos locais ficam excluídos. Os relatórios descrevem dados demonstrativos de vendas; não representam dados comerciais verificados externamente.
+O repositório publica apenas a documentação Markdown, a configuração do Render e os arquivos necessários para servir o dashboard estático. CSVs originais, imagens, scripts de análise/testes, ambiente `.venv`, caches e demais arquivos locais ficam excluídos. Os relatórios descrevem dados demonstrativos de vendas; não representam dados comerciais verificados externamente.
 
 ## Observação sobre as skills
 
@@ -17,4 +19,4 @@ O repositório foi preparado intencionalmente para publicar **apenas esses docum
 
 ## Fluxo documentado
 
-Consulte `AGENTS.md` para as instruções completas. O processo usa as três funções Construtor, Tester e Revisor, preserva relatórios por rodada e só declara aprovação quando todos validam a mesma versão.
+Consulte `AGENTS.md` para as instruções completas. O processo usa as três funções Construtor, Tester e Revisor, preserva relatórios por rodada e só declara aprovação quando todos validam a mesma versão. Para configurar a hospedagem, siga `DEPLOY_RENDER.md`.
